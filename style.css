@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(bg.gif);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    background: url(bg.gif);
+    box-shadow: 0 2px 10px #f42cf4;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.glitch {
+    font-size: 4rem; /* Adjust font size */
+    color: #62f26e; /* Main text color */
+    position: relative; /* Required for the pseudo-elements */
+    text-shadow: 2px 2px #ff00ff; /* Text shadow for a 3D effect */
+    animation: glitch 1s infinite; /* Add animation */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text); /* Duplicate content */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff00ff; /* Secondary color for glitch */
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0); /* Hide the original text */
+    animation: glitch-anim 1s infinite; /* Glitch animation */
+}
+
+.glitch::after {
+    color: #00ffff; /* Another color for variation */
+    animation-delay: 0.2s; /* Stagger the animation */
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 2px #ff00ff; }
+    20% { text-shadow: 2px 2px #5b9b81; }
+    40% { text-shadow: -2px -2px #ff00ff; }
+    60% { text-shadow: 2px 2px #ff00ff; }
+    80% { text-shadow: -2px -2px #00ffff; }
+    100% { text-shadow: 2px 2px #ff00ff; }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(0, 0, 0, 0); }
+    10% { clip: rect(20px, 9999px, 100px, 0); }
+    20% { clip: rect(40px, 9999px, 60px, 0); }
+    30% { clip: rect(10px, 9999px, 100px, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+/* Buttons */
+.btn {
+    cursor: pointer;
+    border: 0;
+    padding: 10px 20px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 5px;
+}
+
+.btn:focus {
+    outline: 0;
+}
+
+.btn:hover {
+    background: #222;
+}
+
+.rules-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.start-btn{
+    cursor: pointer;
+    border: 0;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+    font-size: larger;
+    height: auto;
+}
+
+.start-btn:focus {
+    outline: 0;
+}
+.start-btn:hover {
+    background: #222;
+}
+.diff-btn{
+    cursor: pointer;
+    border: 0;
+    padding: 10px 20px;
+    background-color: rgba(94, 104, 140, 0.696);
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    height: auto;
+}
+
+.diff-btn:focus {
+    outline: 0;
+}
+.diff-btn:hover {
+    background: #222;
+}
+
+
+/* Divs */
+
+.rules {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #6d217a91;
+    color: white;
+    min-height: 100vh;
+    width: 400px;
+    padding: 20px;
+    line-height: 1.5;
+    transform: translateX(-400px);
+    transition: transform 1s ease-in-out;
+}
+
+.rules.show {
+    transform: translateX(0);
+}
+
+.game-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.difficulty {
+    position: absolute;
+    display: none;
+    top: 280px;
+    background: #d339c937;
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+    font-size: 20px;
+}
+
+.start {
+    position: absolute;
+    top: 320px;
+    background: rgba(203, 105, 192, 0.37);
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+    width: 350px;
+    height: 75px;
+}
+
+.lose {
+    display: none;
+    position: absolute;
+    top: 250px;
+    background: #b5398174;
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(61, 155, 152, 0.74);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+}
+
+.win {
+    display: none;
+    position: absolute;
+    top: 250px;
+    background: #3303258b;
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: pop-in 1s;
+}
